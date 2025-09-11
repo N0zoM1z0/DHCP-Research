@@ -1,0 +1,55 @@
+version: '3.3'
+
+services:
+  bind9:
+    image: isc/bind9:9.18
+    container_name: bind9
+    restart: unless-stopped
+    ports:
+      - "5354:53/udp"
+      - "5354:53/tcp"
+    networks:
+      dhcp-dns-net:
+        ipv4_address: 192.168.100.10
+    volumes:
+      - ./bind/conf/named.conf.local:/etc/bind/named.conf.local
+      - ./bind/conf/ddns-key.conf:/etc/bind/ddns-key.conf
+      - ./bind/zones:/var/lib/bind/zones
+
+  kea-dhcp4:
+    # !! 使用 Cloudsmith 上的官方 DHCPv4 模块镜像
+    image: docker.cloudsmith.io/isc/docker/kea-dhcp4:2.6.0
+    container_name: kea-dhcp4
+    restart: unless-stopped
+    depends_on:
+      - bind9
+      - kea-ddns
+    networks:
+      dhcp-dns-net:
+        ipv4_address: 192.168.100.11
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./kea/conf/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf
+      - ./kea/leases:/var/lib/kea
+
+  kea-ddns:
+    # !! 使用 Cloudsmith 上的官方 DDNS 模块镜像
+    image: docker.cloudsmith.io/isc/docker/kea-dhcp-ddns:2.6.0
+    container_name: kea-ddns
+    restart: unless-stopped
+    depends_on:
+      - bind9
+    # !! 关键修正：给 kea-ddns 服务也分配一个固定的IP !!
+    networks:
+      dhcp-dns-net:
+        ipv4_address: 192.168.100.12
+    volumes:
+      - ./kea/conf/kea-ddns.conf:/etc/kea/kea-ddns.conf
+
+networks:
+  dhcp-dns-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24

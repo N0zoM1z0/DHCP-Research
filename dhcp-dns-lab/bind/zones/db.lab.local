@@ -1,0 +1,11 @@
+$TTL    60
+@       IN      SOA     bind9.lab.local. root.lab.local. (
+                              1         ; Serial
+                             60         ; Refresh
+                             30         ; Retry
+                            300         ; Expire
+                             60 )       ; Negative Cache TTL
+;
+@       IN      NS      bind9.lab.local.
+bind9   IN      A       192.168.100.10
+kea     IN      A       192.168.100.11

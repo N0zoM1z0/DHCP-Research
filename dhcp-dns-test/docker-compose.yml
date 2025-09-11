@@ -1,0 +1,47 @@
+version: '3.3'
+
+services:
+  dns-server:
+    image: jpillora/dnsmasq
+    container_name: dns-server
+    # 服务器需要网络管理权限来运行DHCP
+    cap_add:
+      - NET_ADMIN
+    networks:
+      lab-net:
+        # 在我们隔离的lab-net中，给服务器一个固定的IP
+        ipv4_address: 10.10.0.2
+    volumes:
+      - ./dnsmasq/:/etc/dnsmasq.d/
+    restart: unless-stopped
+
+  client-a: # “投毒”客户端
+    image: alpine:latest
+    container_name: client-a
+    # 关键：客户端也需要网络管理权限来运行udhcpc并修改自己的网络
+    cap_add:
+      - NET_ADMIN
+    mac_address: 02:42:ac:14:00:03 # 自定义一个MAC地址
+    networks:
+      - lab-net
+    stdin_open: true
+    tty: true
+
+  client-b: # 测试验证客户端
+    image: alpine:latest
+    container_name: client-b
+    # 关键：测试端同样需要网络管理权限
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - lab-net
+    stdin_open: true
+    tty: true
+
+# 定义我们的隔离网络实验室
+networks:
+  lab-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/24

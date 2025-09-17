@@ -46,6 +46,11 @@ from modules.bootp_legacy_test import test_bootp_legacy
 from modules.overload_corruption_test import test_overload_corruption
 from modules.fragmentation_test import test_ip_fragmentation
 
+# 导入第九梯队的状态机安全测试模块
+from modules.dhcp_state_machine_test import test_state_machine_security
+from modules.dhcp_decline_attack import test_dhcp_decline_attack
+from modules.rapid_release_attack import test_rapid_release_attack
+
 # --- 1. 配置中心 ---
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
@@ -245,6 +250,18 @@ def run_renewal_timing_test(interface_name):
 def run_cross_subnet_test(interface_name):
     """执行跨子网IP请求测试"""
     return test_cross_subnet_request(interface_name)
+
+def run_state_machine_security_test(interface_name):
+    """执行DHCP服务器状态机安全测试"""
+    return test_state_machine_security(interface_name)
+    
+def run_dhcp_decline_attack(interface_name):
+    """执行DHCP Decline攻击测试"""
+    return test_dhcp_decline_attack(interface_name)
+
+def run_rapid_release_attack(interface_name):
+    """执行快速释放与重申请攻击测试"""
+    return test_rapid_release_attack(interface_name)
 
 # --- 4. 报告生成器 ---
 def print_comparison_report(test_name, results):
@@ -954,6 +971,10 @@ if __name__ == "__main__":
         "BOOTP遗留协议回退测试": test_bootp_legacy,
         "选项重载字段损坏攻击": test_overload_corruption,
         "IP分片攻击": test_ip_fragmentation,
+        # 第九梯队状态机安全测试
+        "DHCP服务器状态机安全测试": run_state_machine_security_test,
+        "DHCP Decline攻击测试": run_dhcp_decline_attack,
+        "快速释放与重申请攻击测试": run_rapid_release_attack,
     }
 
     # 创建一个字典来存储所有测试的结果

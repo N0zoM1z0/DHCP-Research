@@ -899,7 +899,7 @@ if __name__ == "__main__":
         # "Option 57 最大消息大小测试": run_option57_test,
         # "Option 82 中继代理信息测试": run_option82_test,
         # "租约操纵-伪造释放测试": run_lease_security_test,
-        # "资源耗尽-DHCP饥饿攻击测试": run_starvation_test,
+        "资源耗尽-DHCP饥饿攻击测试": run_starvation_test,
         # "Option 50 客户端指定IP测试": run_option50_test,
         # "Option 80 快速提交测试": run_option80_test,
         # "Option 77 用户类别测试": run_option77_test,
@@ -907,10 +907,9 @@ if __name__ == "__main__":
         # "Option 119 域名搜索列表测试": run_option119_test,
         # "租约续订时序攻击测试": run_renewal_timing_test,
         # "跨子网IP请求测试": run_cross_subnet_test,
-        # 第八梯队测试
-        "BOOTP遗留协议回退测试": test_bootp_legacy,
-        "选项重载字段损坏攻击": test_overload_corruption,
-        "IP分片攻击": test_ip_fragmentation,
+        # "BOOTP遗留协议回退测试": test_bootp_legacy,
+        # "选项重载字段损坏攻击": test_overload_corruption,
+        # "IP分片攻击": test_ip_fragmentation,
     }
 
     # 创建一个字典来存储所有测试的结果

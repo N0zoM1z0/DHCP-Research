@@ -9,42 +9,42 @@ import os
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "modules"))
 
 # 导入我们的测试模块
-from modules.option12_module import test_option12
-from modules.option81_module import test_option81
-from modules.option114_module import test_option114
-from modules.option121_module import test_option121
+# from modules.option12_module import test_option12
+# from modules.option81_module import test_option81
+# from modules.option114_module import test_option114
+# from modules.option121_module import test_option121
 
-# 导入新的测试模块
-from modules.dhcp_robust_test import test_unknown_option, test_malformed_option
-from modules.option61_module import test_option61
-from modules.option60_module import test_option60
-from modules.option43_module import test_option43
-from modules.option42_module import test_option42
-from modules.option66_67_module import test_option66_67
+# # 导入新的测试模块
+# from modules.dhcp_robust_test import test_unknown_option, test_malformed_option
+# from modules.option61_module import test_option61
+# from modules.option60_module import test_option60
+# from modules.option43_module import test_option43
+# from modules.option42_module import test_option42
+# from modules.option66_67_module import test_option66_67
 
-# 导入第四梯队的高级测试模块
-from modules.option57_module import test_option57
-from modules.option82_module import test_option82
+# # 导入第四梯队的高级测试模块
+# from modules.option57_module import test_option57
+# from modules.option82_module import test_option82
 
-# 导入第五梯队的状态机和安全测试模块
-from modules.lease_manipulation_test import test_spurious_release_security
-from modules.resource_exhaustion_test import test_dhcp_starvation
-from modules.option50_test import test_option50_in_discover
+# # 导入第五梯队的状态机和安全测试模块
+# from modules.lease_manipulation_test import test_spurious_release_security
+# from modules.resource_exhaustion_test import test_dhcp_starvation
+# from modules.option50_test import test_option50_in_discover
 
-# 导入第六梯队的探索性测试模块
-from modules.option80_module import test_option80
-from modules.option77_module import test_option77
-from modules.option33_module import test_option33
-from modules.option119_module import test_option119
+# # 导入第六梯队的探索性测试模块
+# from modules.option80_module import test_option80
+# from modules.option77_module import test_option77
+# from modules.option33_module import test_option33
+# from modules.option119_module import test_option119
 
-# 导入第七梯队的时空维度测试模块
-from modules.renewal_timing_test import test_renewal_timing
-from modules.cross_subnet_request_test import test_cross_subnet_request
+# # 导入第七梯队的时空维度测试模块
+# from modules.renewal_timing_test import test_renewal_timing
+# from modules.cross_subnet_request_test import test_cross_subnet_request
 
-# 导入第八梯队的协议方言与结构完整性测试模块
-from modules.bootp_legacy_test import test_bootp_legacy
-from modules.overload_corruption_test import test_overload_corruption
-from modules.fragmentation_test import test_ip_fragmentation
+# # 导入第八梯队的协议方言与结构完整性测试模块
+# from modules.bootp_legacy_test import test_bootp_legacy
+# from modules.overload_corruption_test import test_overload_corruption
+# from modules.fragmentation_test import test_ip_fragmentation
 
 # 导入第九梯队的状态机安全测试模块
 from modules.dhcp_state_machine_test import test_state_machine_security
@@ -944,33 +944,33 @@ def lease_time_personality(lease_time):
 # --- 3. 主控制器 ---
 if __name__ == "__main__":
     all_tests = {
-        "标准DORA流程": run_standard_dora_test,
-        "Option 12 主机名测试": run_option12_test,
-        "Option 81 FQDN测试": run_option81_test,
-        "Option 114 强制门户测试": run_option114_test,
-        "Option 121 静态路由测试": run_option121_test,
-        "健壮性-未知选项测试": test_unknown_option,
-        "健壮性-畸形选项测试": test_malformed_option,
-        "Option 61 客户端标识符测试": test_option61,
-        "Option 60 厂商类型标识符测试": test_option60,
-        "Option 43 厂商特定信息测试": test_option43,
-        "Option 42 NTP服务器测试": test_option42,
-        "Option 66/67 PXE引导测试": test_option66_67,
-        "Option 57 最大消息大小测试": run_option57_test,
-        "Option 82 中继代理信息测试": run_option82_test,
-        "租约操纵-伪造释放测试": run_lease_security_test,
-        "资源耗尽-DHCP饥饿攻击测试": run_starvation_test,
-        "Option 50 客户端指定IP测试": run_option50_test,
-        "Option 80 快速提交测试": run_option80_test,
-        "Option 77 用户类别测试": run_option77_test,
-        "Option 33 静态路由(旧)测试": run_option33_test,
-        "Option 119 域名搜索列表测试": run_option119_test,
-        "租约续订时序攻击测试": run_renewal_timing_test,
-        "跨子网IP请求测试": run_cross_subnet_test,
-        # 第八梯队测试
-        "BOOTP遗留协议回退测试": test_bootp_legacy,
-        "选项重载字段损坏攻击": test_overload_corruption,
-        "IP分片攻击": test_ip_fragmentation,
+        # "标准DORA流程": run_standard_dora_test,
+        # "Option 12 主机名测试": run_option12_test,
+        # "Option 81 FQDN测试": run_option81_test,
+        # "Option 114 强制门户测试": run_option114_test,
+        # "Option 121 静态路由测试": run_option121_test,
+        # "健壮性-未知选项测试": test_unknown_option,
+        # "健壮性-畸形选项测试": test_malformed_option,
+        # "Option 61 客户端标识符测试": test_option61,
+        # "Option 60 厂商类型标识符测试": test_option60,
+        # "Option 43 厂商特定信息测试": test_option43,
+        # "Option 42 NTP服务器测试": test_option42,
+        # "Option 66/67 PXE引导测试": test_option66_67,
+        # "Option 57 最大消息大小测试": run_option57_test,
+        # "Option 82 中继代理信息测试": run_option82_test,
+        # "租约操纵-伪造释放测试": run_lease_security_test,
+        # "资源耗尽-DHCP饥饿攻击测试": run_starvation_test,
+        # "Option 50 客户端指定IP测试": run_option50_test,
+        # "Option 80 快速提交测试": run_option80_test,
+        # "Option 77 用户类别测试": run_option77_test,
+        # "Option 33 静态路由(旧)测试": run_option33_test,
+        # "Option 119 域名搜索列表测试": run_option119_test,
+        # "租约续订时序攻击测试": run_renewal_timing_test,
+        # "跨子网IP请求测试": run_cross_subnet_test,
+        # # 第八梯队测试
+        # "BOOTP遗留协议回退测试": test_bootp_legacy,
+        # "选项重载字段损坏攻击": test_overload_corruption,
+        # "IP分片攻击": test_ip_fragmentation,
         # 第九梯队状态机安全测试
         "DHCP服务器状态机安全测试": run_state_machine_security_test,
         "DHCP Decline攻击测试": run_dhcp_decline_attack,
